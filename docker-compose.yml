@@ -1,26 +1,41 @@
 version: '3'
-
 services:
   db:
-    image: mysql:8.0
+    build:
+      context: ./mysql
+    ports:
+      - "3306:3306"
+    image: jayshamnani/mysql:1.0
     container_name: db
     restart: unless-stopped
-    env_file: .env
-    environment:
-      - MYSQL_DATABASE=wordpress
-    command: '--default-authentication-plugin=mysql_native_password'
+    command: mysqld --default-authentication-plugin=mysql_native_password
+
 
   wordpress:
+    image: wordpress:latest
     depends_on:
       - db
-    image: wordpress:latest
-    container_name: wordpress
-    restart: unless-stopped
-    env_file: .env
     environment:
-      - WORDPRESS_DB_HOST=db:3306
-      - WORDPRESS_DB_USER=$MYSQL_USER
-      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
-      - WORDPRESS_DB_NAME=wordpress
+      WORDPRESS_DB_HOST: db
+      MYSQL_ROOT_PASSWORD: your_root_password
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: your_wordpress_database_user
+      WORDPRESS_DB_PASSWORD: your_wordpress_database_password
+    links:
+      - db
+    restart: always
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    image: jayshamnani/nginx:1.0
+    depends_on:
+      - wordpress
+    container_name: nginx
+    restart: unless-stopped
+    links:
+      - wordpress
     ports:
         - "80:80"
