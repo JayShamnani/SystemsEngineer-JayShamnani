@@ -3,24 +3,20 @@ services:
   db:
     build:
       context: ./mysql
-    ports:
-      - "3306:3306"
-    image: jayshamnani/mysql:1.0
-    container_name: db
-    restart: unless-stopped
     command: mysqld --default-authentication-plugin=mysql_native_password
-
+    container_name: db
+    image: 'jayshamnani/mysql:1.0'
+    ports:
+      - '3306:3306'
+    restart: unless-stopped
 
   wordpress:
-    image: wordpress:latest
+    build:
+      context: ./wordpress
+    container_name: wordpress
     depends_on:
       - db
-    environment:
-      WORDPRESS_DB_HOST: db
-      MYSQL_ROOT_PASSWORD: your_root_password
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: your_wordpress_database_user
-      WORDPRESS_DB_PASSWORD: your_wordpress_database_password
+    image: 'jayshamnani/wordpress:1.0'
     links:
       - db
     restart: always
@@ -28,14 +24,12 @@ services:
   nginx:
     build:
       context: ./nginx
-    ports:
-      - "80:80"
-    image: jayshamnani/nginx:1.0
+    container_name: nginx
     depends_on:
       - wordpress
-    container_name: nginx
-    restart: unless-stopped
+    image: 'jayshamnani/nginx:1.0'
     links:
       - wordpress
     ports:
-        - "80:80"
+      - '80:80'
+    restart: unless-stopped
