@@ -56,9 +56,9 @@ if [ $? -gt 0 ];
    then
    echo "Looks like docker is not installed in this system"
    echo "Installing Docker..."
-
+   docker -v > /dev/null 2>&1
    # Installing Docker in system
-   while [ $? -gt 0 ]
+   while [ $? -gt 1 ]
       do 
          docker -v > /dev/null 2>&1
          docker-compose > /dev/null 2>&1
