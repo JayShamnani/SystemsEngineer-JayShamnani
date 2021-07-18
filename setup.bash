@@ -95,7 +95,7 @@ if [ $? -gt 0 ];
                   echo "Invalid Option $2"
                fi
             fi
-            # docker-compose up -d
+            docker-compose up -d
 
          elif [ $1 == stop ]
             then
