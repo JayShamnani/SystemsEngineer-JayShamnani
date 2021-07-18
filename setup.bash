@@ -58,8 +58,13 @@ if [ $? -gt 0 ];
    echo "Installing Docker..."
 
    # Installing Docker in system
-   ./https://get.docker.com/
-
+   while [ $? -gt 0 ]
+      do 
+         docker -v > /dev/null 2>&1
+         docker-compose > /dev/null 2>&1
+         curl -fsSL get.docker.com -o get-docker.sh
+         sudo sh get-docker.sh
+      end
    # Assuming docker is installed
    
    else
