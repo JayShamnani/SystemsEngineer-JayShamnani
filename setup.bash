@@ -56,24 +56,23 @@ if [ $? -gt 0 ];
    then
    echo "Looks like docker is not installed in this system"
    echo "Installing Docker..."
+   
    docker -v > /dev/null 2>&1
+   
    # Installing Docker in system
-   while [ $? -gt 0 ]
-      do 
-            docker -v > /dev/null 2>&1
-	    echo "getting docker..."
-            curl -fsSL get.docker.com -o get-docker.sh 
-	    echo "install docker..."
-            sudo sh get-docker.sh > /dev/null 2>&1
-	    echo "install docker-compose..."
-            sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose > /dev/null 2>&1
-            sudo chmod +x /usr/local/bin/docker-compose > /dev/null 2>&1
-	    echo "almost done"
-            docker-compose > /dev/null 2>&1
-	    echo "done 1 and return is $?"
-     done
-   # Assuming docker is installed
- ./setup.bash  
+   if [ $? -gt 0 ]
+      then
+         docker -v > /dev/null 2>&1
+         curl -fsSL get.docker.com -o get-docker.sh
+         sudo sh get-docker.sh > /dev/null 2>&1
+         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose > /dev/null 2>&1
+         sudo chmod +x /usr/local/bin/docker-compose > /dev/null 2>&1
+         docker-compose > /dev/null 2>&1
+   fi
+   
+   # If all the setup are done then the further script will execute
+   ./setup.bash
+
    else
 
          if [ $# -lt 1 ]
