@@ -60,25 +60,20 @@ if [ $? -gt 0 ];
    # Installing Docker in system
    while [ $? -gt 0 ]
       do 
-         runInstall() {
             docker -v > /dev/null 2>&1
+	    echo "getting docker..."
             curl -fsSL get.docker.com -o get-docker.sh 
+	    echo "install docker..."
             sudo sh get-docker.sh > /dev/null 2>&1
+	    echo "install docker-compose..."
             sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose > /dev/null 2>&1
             sudo chmod +x /usr/local/bin/docker-compose > /dev/null 2>&1
+	    echo "almost done"
             docker-compose > /dev/null 2>&1
-            return $?
-         }
-         docker -v > /dev/null 2>&1
-         if [ $? -gt 0 ]
-         then
-            runInstall
-         else
-         break;
-         fi
+	    echo "done 1 and return is $?"
      done
    # Assuming docker is installed
-   
+ ./setup.bash  
    else
 
          if [ $# -lt 1 ]
