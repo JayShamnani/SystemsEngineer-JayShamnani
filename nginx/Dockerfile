@@ -8,6 +8,8 @@ RUN apt-get upgrade -y
 RUN apt-get install nginx -y
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+# Copying files for Nginx and Hosts
 COPY default.conf /etc/nginx/sites-available/default
 
 # Exposing Container
