@@ -80,18 +80,6 @@ if [ $? -gt 0 ];
    # Assuming docker is installed
    
    else
-      
-      # check if docker-compose is installed or not
-      docker-compose -v > /dev/null 2>&1
-
-      if [ $? -gt 0 ]; 
-
-         then
-         echo "Looks like docker is not installed in this system"
-         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-         sudo chmod +x /usr/local/bin/docker-compose
-
-      else
 
          if [ $# -lt 1 ]
             then
@@ -128,7 +116,5 @@ if [ $? -gt 0 ];
             docker-compose ps
 
       fi
-
-   fi
 
 fi
