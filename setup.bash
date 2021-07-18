@@ -64,7 +64,7 @@ if [ $? -gt 0 ];
          docker-compose > /dev/null 2>&1
          curl -fsSL get.docker.com -o get-docker.sh
          sudo sh get-docker.sh
-      end
+     done
    # Assuming docker is installed
    
    else
