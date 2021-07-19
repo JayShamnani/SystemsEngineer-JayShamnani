@@ -162,6 +162,13 @@ else
          then
          docker-compose ps
 
+      elif [ $1 == '--help' ]
+         then
+         ./setup.bash
+      
+      else
+         echo "Invalid Option"
+
    fi
 
 fi
