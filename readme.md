@@ -8,21 +8,25 @@ This Script will setup and install all the required Components for the LEMP stac
 
 This script requires docker and docker-compose. If not found it will automatically install required packages.
 
+This script will only run as superuser
+```
+sudo su
+```
 #### to run containers
 ```
-./setup.bash start -d 'example.com'
+. ./setup.bash start -d 'example.com'
 ```
 #### to stop containers
 ```
-./setup.bash stop
+. ./setup.bash stop
 ```
 #### to delete containers and clean up
 ```
-./setup.bash delete
+. ./setup.bash delete
 ```
 #### to get help
 ```
-./setup.bash
+. ./setup.bash
 ```
 
 ## Directory Structure
@@ -33,3 +37,7 @@ foo
 |--nginx
 
 |--wordpress
+
+## Special Notes
+
+This script is best supported on Ubuntu Linux platforms. Other platforms are supported if Docker and Docker-Compose is available.

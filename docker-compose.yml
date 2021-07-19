@@ -34,4 +34,4 @@ services:
       - '80:80'
     restart: unless-stopped
     extra_hosts:
-      - "example.com:127.0.0.1"
+      - "$CUSTOM_DOMAIN:127.0.0.1"

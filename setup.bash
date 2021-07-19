@@ -8,7 +8,7 @@ usage="./setup.bash - A simple script to run Wordpress and MySQL on Containers
 
       start:
          This command will start containers.
-         This command requires arguments.
+         This command requires arguments (but not mandatory).
          
          EXAMPLE:
             ./setup.bash start -d 'example.com'
@@ -46,7 +46,7 @@ usage="./setup.bash - A simple script to run Wordpress and MySQL on Containers
    
    For more advanced info https://github.com/JayShamnani/SystemsEngineer-JayShamnani"
 
-domain="example.com"
+export CUSTOM_DOMAIN="example.com"
 
 # check if docker is installed or not
 docker -v > /dev/null 2>&1
@@ -120,13 +120,13 @@ else
             then
             echo "Domain name not provided..."
             echo "Taking default domain name 'example.com'"
-            export DOMAIN="example.com"
+            # export DOMAIN="example.com"
             docker-compose up -d
             if [ $? -gt 0 ]
                then
                echo "Error Occurred"
                else
-               echo "Open $DOMAIN in your browser"
+               echo "Open $CUSTOM_DOMAIN in your browser"
             fi
          else
             if [ $2 == "-d" ]
@@ -135,14 +135,14 @@ else
                   then
                   echo "Please provide a domain name"
                   else
-                  export DOMAIN=$3
-                  echo "Domain name provided... $DOMAIN"
+                  export CUSTOM_DOMAIN=$3
+                  echo "Domain name provided... $CUSTOM_DOMAIN"
                   docker-compose up -d
                   if [ $? -gt 0 ]
                      then
                      echo "Error Occurred"
                      else
-                     echo "Open $DOMAIN in your browser"
+                     echo "Open $CUSTOM_DOMAIN in your browser"
                   fi
                fi
             else
