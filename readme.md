@@ -46,10 +46,11 @@ This script is best supported on Ubuntu Linux platforms. Other platforms are sup
 
 <div>
 
-<img src="https://github.com/JayShamnani/SystemsEngineer-JayShamnani/blob/master/help1.jpeg?raw=true" width="100">
+<img src="https://github.com/JayShamnani/SystemsEngineer-JayShamnani/blob/master/screenshots/help1.jpeg?raw=true" width="100">
 
-<img src="https://github.com/JayShamnani/SystemsEngineer-JayShamnani/blob/master/help2.jpeg?raw=true" width="100">
+<img src="https://github.com/JayShamnani/SystemsEngineer-JayShamnani/blob/master/screenshots/help2.jpeg?raw=true" width="100">
 
-<img src="https://github.com/JayShamnani/SystemsEngineer-JayShamnani/blob/master/commands.jpeg?raw=true" width="100">
+<img src="https://github.com/JayShamnani/SystemsEngineer-JayShamnani/blob/master/screenshots/commands.jpeg?raw=true" width="100">
+
 
 </div>
